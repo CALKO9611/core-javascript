@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "npx live-server client --host=localhost --port=5500 --no-browser"
+  },
+  "dependencies": {
+    "gsap": "^3.11.4"
+  },
+  "devDependencies": {
+    "eslint": "^8.30.0",
+    "live-server": "^1.2.2"
+  }
+}
