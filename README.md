@@ -15,3 +15,4 @@
 - [x] Operations
 - [x] condition
 - [x] loop
+- [x] function
