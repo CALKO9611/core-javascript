@@ -34,7 +34,7 @@ console.log(first.getAttribute('class') === 'first'); // true
 // - elementNode.setAttribute(name, value) – 속성값을 변경함
 first.setAttribute('id', 'box'); // id="box"
 first.setAttribute('some', 'hello'); // some="hello"
-first.setAttribute('class', 'is-active');
+// first.setAttribute('class', 'is-active');
 
 
 // - elementNode.removeAttribute(name) – 속성값을 지움
@@ -70,15 +70,51 @@ function getAttr(node, prop) {
   if(typeof node === 'string') {
     node = getNode(node);
   }
-  node.getAttribute(prop)
+  return node.getAttribute(prop);
 }
 
-getAttr('.first', 'class')
-
-
 // set 함수 만들기
+function setAttr(node, prop, value) {
+  // validation
+  if(typeof node === 'string') node = getNode(node);
+  if(typeof prop !== 'string') throw new TypeError('setAtrr 함수의 두 번째 인자는 문자 타입 이어야 합니다.')
 
-// common 함수 만들기
+  if (prop.includes("data")) {
+    let rest = prop.slice(5);
+    node.dataset[rest] = value;
+  }  
+
+  if(!value) throw new SyntaxError('setAttr 함수의 세 번째 인자는 필수값입니다.')
+
+  node.setAttribute(prop, value);
+}
+
+getAttr(first, 'data-play');
+setAttr('.first', 'data-value', 'hello')
+
+// 공통으로 다룰 수 있는 함수 만들기
+
+// 화살표 함수
+// const attr = (node, prop, value) => !value ? getAttr(node, prop) : setAttr(node,prop,value);
+
+
+// 일반 함수
+function attr(node, prop, value){
+  
+  // 여러줄
+  if(!value){
+    return getAttr(node, prop);
+  } else{
+    setAttr(node, prop, value);
+  }
+
+  // 한 줄
+  // return !value ? getAttr(node,prop) : setAttr(node,prop,value);
+}
+
+console.log(attr('.first', 'id'))
+console.log(attr('.first', 'id', 'container'))
+
 
 
 // 즉시 실행 함수 예시
