@@ -63,7 +63,6 @@ console.log(first.dataset.play) // get
 
 // 유틸 함수
 // get 함수 만들기
-
 // getAttr('.first', 'class')
 function getAttr(node, prop) {
 
