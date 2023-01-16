@@ -1,5 +1,5 @@
 
-import {clearContents, getInputValue, getNode, getRandom, insertLast, isNumericString, showAlert } from './lib/index.js';
+import {copy, clearContents, getInputValue, getNode, getRandom, insertLast, isNumericString, showAlert } from './lib/index.js';
 
 import { jujeobData } from "./data/data.js";
 
@@ -15,12 +15,12 @@ function clickSubmitHandler(e){
   let pick = list[getRandom(list.length-1)];
   
   if (!name){
-    showAlert('.alert', "이름을 입력해주세요", 3000)
+    showAlert('.alert', "잘못된 정보입니다.", 2000)
     return;
   }
   
   if(isNumericString(name)){
-    showAlert('.alert', "제대로된 이름을 입력해주세요", 3000)
+    showAlert('.alert', "정확한 이름을 입력해주세요!", 2000)
     return;
   }
 
@@ -30,4 +30,16 @@ function clickSubmitHandler(e){
 }
 
 
+function clickCopyHandler(){
+  let text = resultArea.textContent;
+  copy(text).then(()=>{
+    showAlert('.alert-success', '클립보드 복사가 완료됐습니다.', 2000)
+  })
+
+  // 약속구문
+  // 약속
+  // 다음 해야 할 일
+}
+
 submit.addEventListener('click', clickSubmitHandler)
+resultArea.addEventListener('click', clickCopyHandler)
