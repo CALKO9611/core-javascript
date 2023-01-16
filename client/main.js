@@ -3,9 +3,12 @@ import {
   disableElement, 
   enableElement, 
   getNode, 
+  clearContents,
   getNodes, 
   invisibleElement, 
-  visibleElement
+  visibleElement,
+  insertLast,
+  attr,
 } from "./lib/index.js"
 // [1 페이즈]
 // [ 주사위 굴리기 ]
@@ -21,7 +24,12 @@ import {
 // 2. disable 활성 유틸 함수 만들기
 // 3. handleReset 함수를 만듭니다.
 // 4. visible 활성 유틸 함수 만들기
-// 5. toggleState 유틸 함수 만들기 
+// 5. toggleState 유틸 함수 만들기
+
+// [ 레코드 템플릿 뿌리기 ]
+// 1. renderRecordListItem 함수 만들기
+// 2. HTML 템플릿 만들기
+// 3. 템플릿 뿌리기 
 
 // 배열의 구조 분해 할당
 const [rollingDiceButton, recordButton, resetButton] = getNodes('.buttonGroup > button')
@@ -29,6 +37,29 @@ const [rollingDiceButton, recordButton, resetButton] = getNodes('.buttonGroup > 
 const recordListWrapper = getNode('.recordListWrapper')
 
 
+let count = 0;
+let total = 0;
+
+function renderRecordListItem(){
+  let diceValue = Number(attr('#cube', 'data-dice'));
+  let template = /* html */`
+  
+    <tr>
+      <td>${++count}</td>
+      <td>${diceValue}</td>
+      <td>${total += diceValue}</td>
+    </tr> 
+  `
+  insertLast('.recordListWrapper tbody', template)
+  // 스크롤 고정하기
+  recordListWrapper.scrollTop = recordListWrapper.scrollHeight
+}
+
+
+
+/* ---------------------------------------- */
+/* event                                    */
+/* ---------------------------------------- */
 
 // IIFE
 const handleRollingDice = (() => {
@@ -55,10 +86,15 @@ const handleRollingDice = (() => {
 
 const handleRecord = () => {
   visibleElement(recordListWrapper);
+
+  renderRecordListItem()
 }
 
 const handleReset = () => {
   invisibleElement(recordListWrapper);
+  clearContents('.recordListWrapper tBody')
+  count = 0;
+  total = 0;
 }
 
 rollingDiceButton.addEventListener('click', handleRollingDice)
