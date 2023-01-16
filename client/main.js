@@ -1,5 +1,6 @@
+/* global gsap */
 
-import {copy, clearContents, getInputValue, getNode, getRandom, insertLast, isNumericString, showAlert } from './lib/index.js';
+import {copy, clearContents, getInputValue, getNode, getRandom, insertLast, isNumericString, showAlert, addClass, removeClass } from './lib/index.js';
 
 import { jujeobData } from "./data/data.js";
 
@@ -16,6 +17,13 @@ function clickSubmitHandler(e){
   
   if (!name){
     showAlert('.alert', "잘못된 정보입니다.", 2000)
+
+    // GSAP
+    gsap.fromTo(resultArea, 0.01, {x:-5}, {x:5, clearProps:"x", repeat:20})
+    // addClass(resultArea, 'shake');
+    // setTimeout(()=>{
+    //   removeClass(resultArea, 'shake');
+    // }, 1000);
     return;
   }
   
