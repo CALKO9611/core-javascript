@@ -31,6 +31,12 @@ import {
 // 2. HTML 템플릿 만들기
 // 3. 템플릿 뿌리기 
 
+// [ 초기화 시키기 ]
+// 1. clearContent 로 정보 지우기
+// 2. total, count 초기화
+// 3. 스크롤 밑으로 내리기
+// 4. 
+
 // 배열의 구조 분해 할당
 const [rollingDiceButton, recordButton, resetButton] = getNodes('.buttonGroup > button')
 
@@ -91,10 +97,10 @@ const handleRecord = () => {
 }
 
 const handleReset = () => {
-  invisibleElement(recordListWrapper);
-  clearContents('.recordListWrapper tBody')
   count = 0;
   total = 0;
+  invisibleElement(recordListWrapper);
+  clearContents('.recordListWrapper tBody')
 }
 
 rollingDiceButton.addEventListener('click', handleRollingDice)
