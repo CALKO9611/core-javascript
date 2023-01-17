@@ -1,3 +1,4 @@
+
 /* readyState
   0: uninitalized // 초기화
   1: loading // 로딩
@@ -12,11 +13,12 @@ function xhrData({
   method = 'GET',
   body = null,
   onSuccess = null,
+  onFail = null,
   headers = {
     'Content-Type' : 'application/json',
     'Access-Control-Allow-Origin': '*',
-  }
-}){
+  },
+} = {}){
 
   // const {method, url, body} = options;
   
@@ -36,24 +38,92 @@ function xhrData({
     if(status >= 200 && status < 400){
       if(readyState === 4){
         console.log('통신 성공');
-        console.log(JSON.parse(response));
+        onSuccess(JSON.parse(response));
       }
     }else{
-      console.error('통신 실패');
+      // console.error();
+      onFail('통신 실패');
     }
   });
-
   // 서버에 요청
   xhr.send(JSON.stringify(body));
 }
 
+/* 
 xhrData({
-  url: 'https://jsonplaceholder.typicode.com/users',
-  onSuccess: () =>{
-
+  url: 'https://jsonplaceholder.typicode.com/users/1',
+  onSuccess: (result) =>{
+    console.log(result);
+  },
+  onFail: (err) =>{
+    console.error(err);
   }
 })
+ */
 
+xhrData.get = (url, onSuccess, onFail) =>{
+  xhrData({
+    url,
+    onSuccess,
+    onFail
+  })
+}
+xhrData.post = (url, body, onSuccess, onFail) =>{
+  xhrData({
+    method: 'POST',
+    body,
+    url,
+    onSuccess,
+    onFail
+  })
+}
+xhrData.put = (url, body, onSuccess, onFail) =>{
+  xhrData({
+    method: 'PUT',
+    body,
+    url,
+    onSuccess,
+    onFail
+  })
+}
+xhrData.delete = (url, body, onSuccess, onFail) =>{
+  xhrData({
+    method: 'DELETE',
+    url,
+    onSuccess,
+    onFail
+  })
+}
+
+
+
+xhrData.get(
+  'https://jsonplaceholder.typicode.com/users/1',
+  (result) =>{
+    console.log(result);
+  },
+  (err) => {
+    console.log(err);
+  }
+)
+
+
+
+
+/* 
+xhrData.delete(
+  'https://jsonplaceholder.typicode.com/users/1',
+  (result) =>{
+    console.log(result);
+  },
+  (err) => {
+    console.log(err);
+  }
+)
+ */
+
+ 
+ 
 /* 
 xhrData('POST', 'https://jsonplaceholder.typicode.com/users', {
   "name": "calko",
