@@ -8,7 +8,7 @@
 */
 
 
-function xhrData({
+export function xhrData({
   url = '',
   method = 'GET',
   body = null,
@@ -96,7 +96,7 @@ xhrData.delete = (url, body, onSuccess, onFail) =>{
 }
 
 
-
+/* 
 xhrData.get(
   'https://jsonplaceholder.typicode.com/users/1',
   (result) =>{
@@ -106,9 +106,7 @@ xhrData.get(
     console.log(err);
   }
 )
-
-
-
+ */
 
 /* 
 xhrData.delete(
