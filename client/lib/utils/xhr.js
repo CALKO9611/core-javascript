@@ -7,12 +7,27 @@
 */
 
 
-function xhrData(method, url, body){
+function xhrData({
+  url = '',
+  method = 'GET',
+  body = null,
+  onSuccess = null,
+  headers = {
+    'Content-Type' : 'application/json',
+    'Access-Control-Allow-Origin': '*',
+  }
+}){
 
+  // const {method, url, body} = options;
+  
   const xhr = new XMLHttpRequest();
 
   // 비동기 통신 오픈
   xhr.open(method, url);
+
+  // Object.entries(headers).forEach(([key, value]) => {
+  //   xhr.setRequestHeader(key, value);
+  // });
 
   
   xhr.addEventListener('readystatechange', () => {
@@ -32,6 +47,14 @@ function xhrData(method, url, body){
   xhr.send(JSON.stringify(body));
 }
 
+xhrData({
+  url: 'https://jsonplaceholder.typicode.com/users',
+  onSuccess: () =>{
+
+  }
+})
+
+/* 
 xhrData('POST', 'https://jsonplaceholder.typicode.com/users', {
   "name": "calko",
   "username": "daewoong",
@@ -54,4 +77,4 @@ xhrData('POST', 'https://jsonplaceholder.typicode.com/users', {
     "bs": "harness real-time e-markets"
     }
 })
-
+ */
