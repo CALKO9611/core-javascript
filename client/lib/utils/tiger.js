@@ -64,4 +64,4 @@ tiger.delete = (url, options) => {
 }
 
 
-tiger.post('www.naver.com', {name:'tiger'}, {mode:'cors', headers:{}})
+// tiger.post('https://jsonplaceholder.typicode.com/users', {name:'tiger'}, {mode:'cors', headers:{}})
