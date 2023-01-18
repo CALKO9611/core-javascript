@@ -74,3 +74,19 @@ export function delayP(options = {}){
 // delayP()
 // .then(res=>console.log(res))
 // .catch(err=>console.log(err))
+
+
+
+/* -------------------------------------------- */
+
+
+
+// async await
+
+async function delayA(){
+  return '완료'
+}
+
+let result = await delayA();
+
+console.log(result)
