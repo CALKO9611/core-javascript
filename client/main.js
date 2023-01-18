@@ -1,4 +1,4 @@
-import { insertLast, xhrData, xhrPromise } from  "./lib/index.js";
+import { insertLast, xhrData, xhrPromise, tiger } from  "./lib/index.js";
 
 
 // call back
@@ -17,9 +17,8 @@ import { insertLast, xhrData, xhrPromise } from  "./lib/index.js";
 
 
 /* -------------------------------------------- */
-
+/* 
 // promice
-
 xhrPromise
 .get('https://jsonplaceholder.typicode.com/users/1') // promise
 .then((res)=>{
@@ -28,3 +27,4 @@ xhrPromise
 .catch((err)=>{
   console.log(err);
 })
+ */
