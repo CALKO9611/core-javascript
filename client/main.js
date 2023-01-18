@@ -1,4 +1,4 @@
-import { insertLast, xhrData, xhrPromise, tiger } from  "./lib/index.js";
+import { insertLast, xhrData, xhrPromise, tiger, delayP } from  "./lib/index.js";
 
 
 // call back
@@ -28,3 +28,11 @@ xhrPromise
   console.log(err);
 })
  */
+
+async function render(){
+  await delayP(2000)
+  let response = await tiger.get('https://jsonplaceholder.typicode.com/users/1')
+  console.log(response.data);
+
+}
+render()
