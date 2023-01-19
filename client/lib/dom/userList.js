@@ -1,4 +1,15 @@
-const createUserCard = (id,name,email,website) => {
+import { insertLast } from "./insert.js";
+
+
+
+
+const createUserCard = ({
+  id = '', 
+  name = '', 
+  email = '', 
+  website = ''
+} = {}) => {
+
   return /* html */ `
   <article class="user-card" data-index="user-${id}">
     <h3 class="user-name">${name}</h3>
@@ -16,4 +27,6 @@ const createUserCard = (id,name,email,website) => {
 }
 
 
-console.log(createUserCard(1, 'tiger', 'tiger@euid.dev', 'tiger.com'))
+export const renderUserCard = (target,data) => {
+  insertLast(target, createUserCard(data));
+}
