@@ -1,8 +1,5 @@
 import { insertLast } from "./insert.js";
 
-
-
-
 const createUserCard = ({
   id = '', 
   name = '', 

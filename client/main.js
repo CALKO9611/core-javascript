@@ -52,14 +52,17 @@ render()
 const userCardContainer = getNode('.user-card-inner')
 
 async function rendingUserList(){
-  let response = await tiger.get('https://jsonplaceholder.typicode.com/users/1');
+  let response = await tiger.get('https://jsonplaceholder.typicode.com/users');
+
   let userData = response.data;
 
-  console.log(userData);
-
-  renderUserCard(userCardContainer, userData)
-
-
+  // forEach 사용 (화살표 함수로 축약함)
+  userData.forEach(data => renderUserCard(userCardContainer, data)
+  )
+  // for 사용
+  // for (let i = 0; i < userData.length; i++) {
+  //   renderUserCard(userCardContainer, userData[i])
+  // }
 
 }
 rendingUserList()
